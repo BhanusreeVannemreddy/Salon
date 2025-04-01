@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalonBook - Booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    background-image: url("back\ \(1\).jpg");
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4f46e5;
+    padding: 15px 30px;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Booking Section */
+.booking {
+    max-width: 500px;
+    margin: 50px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.booking h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.booking form div {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.booking label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.booking input,
+.booking select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.booking input:focus,
+.booking select:focus {
+    border-color: #4f46e5;
+    outline: none;
+}
+
+.booking button {
+    background: #4f46e5;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.booking button:hover {
+    background: #3b3ab1;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #1f2937;
+    color: white;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">SalonBook</div>
+        <nav>
+            <ul>
+                <li><a href="fend.html">Home</a></li>
+                <li><a href="saloons.html">Salons</a></li>
+                
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Booking Form -->
+    <section class="booking">
+        <h2>Book an Appointment</h2>
+        <form id="bookingForm">
+            <div>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+        </div>
+
+            <div>
+                <label for="salon">Choose Salon:</label>
+            <select id="salon">
+                <option>Glamour Cuts - NY</option>
+                <option>Style Hub - LA</option>
+                <option>Royal Touch - Chicago</option>
+            </select>
+            </div>
+
+            <div>
+                <label for="service">Service:</label>
+            <select id="service">
+                <option>Haircut</option>
+                <option>Styling</option>
+                <option>Coloring</option>
+                <option>Treatment</option>
+                <option>Men's Grooming</option>
+            </select>
+            </div>
+
+            <div>
+                <label for="date">Choose Date:</label>
+            <input type="date" id="date" required>
+            </div>
+            <div>
+                <button type="submit">Book Now</button>
+            </div>
+           
+        </form>
+    </section>
+
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const salon = document.getElementById("salon").value;
+            const service = document.getElementById("service").value;
+            const date = document.getElementById("date").value;
+
+            const bookingData = { name, salon, service, date };
+
+            try {
+                const response = await fetch('http://localhost:5000/book', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(bookingData)
+                });
+
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                console.error("Error submitting booking:", error);
+            }
+        });
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SalonBook. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    background-image: url(first.jpg); 
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents repetition */
+    background-attachment: fixed; /* Makes the background stay fixed while scrolling */
+    color: #333;
+}
+h1 {
+            font-size: 3rem;
+            /* Dark semi-transparent background */
+            padding: 20px 40px;
+            border-radius: 10px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            animation: fadeIn 1.5s ease-in-out; /* Fade-in effect on load */
+            margin-left: 500px;
+        }
+        @keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+h1 {
+    animation: slideInLeft 1.5s ease-out forwards;
+}
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .login-btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background: #ff5733;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            margin-left: 470px;
+            margin-top: 500px;
+            
+        }
+
+        .login-btn:hover {
+            background: #ff2e00;
+            transform: scale(1.05); /* Slightly enlarges on hover */
+        }
+
+        h1{
+            text-align: center;
+        }
+
+    </style>
+</head>
+<center></center>
+<body>
+    
+    <h1 class="headings">
+        <b>
+         Welcome  
+        </b>
+        
+    </h1>
+    <h1 class="headings">
+        <b>
+          To 
+        </b>
+        
+    </h1>
+    <h1 class="headings">
+        <b>Saloon 
+
+     </b>
+        
+    </h1>
+    <h1 class="headings">
+        <b>Bookings 
+
+     </b>
+        
+    </h1>
+
+    <center><a href="loginpage.html" class="login-btn">Login</a></center>
+</body>
+</center>
+</html>

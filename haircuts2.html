@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haircuts</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #6a0dad;
+            padding: 20px 50px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffcc00;
+        }
+        .haircuts {
+            text-align: center;
+            padding: 50px 20px;
+            background: #6a0dad;
+            color: white;
+        }
+        .haircut-list {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .haircut {
+            background: #ffcc00;
+            color: #6a0dad;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .haircut:hover {
+            background: white;
+            color: #6a0dad;
+        }
+        footer {
+            text-align: center;
+            background: #1f1f1f;
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="haircuts">
+        <h2>Haircut Services</h2>
+        <div class="haircut-list">
+            <a href="classic.html">
+                <div class="haircut">Classic Cut</div>
+            </a>
+
+    <a href="fade.html">
+        <div class="haircut">Fade Haircut</div>
+            </a>
+            <a href="layer.html">
+                <div class="haircut">Layered Cut</div>
+                    </a>
+                    <a href="Buzz.html">
+                        <div class="haircut">Buzz Cut</div>
+                  </a>
+                  <a href="Bob.html">
+                    <div class="haircut">Bob Haircut</div>
+                    
+              </a>
+                    
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 SalonBook. All rights reserved.</p>
+    </footer>
+</body>
+</html>

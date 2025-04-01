@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Booking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fend.html">
+    <link rel="stylesheet" href="saloons.html">
+    <link rel="stylesheet" href="booking.html">
+    <link rel="stylesheet" href="contact.html">
+
+    <style>
+        /* General Styles */
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    color: #333;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #6a0dad;
+    padding: 20px 50px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 25px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    background: linear-gradient(135deg, #831d64, #b24592);
+    color: white;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-bar input {
+    padding: 12px;
+    width: 300px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.search-bar button {
+    padding: 12px 20px;
+    border: none;
+    background: #ffcc00;
+    color: #6a0dad;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 8px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.search-bar button:hover {
+    background: white;
+}
+
+/* Salon Listings */
+.salon-list {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url(back\ \(1\).jpg);
+}
+
+.salons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.salon {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.salon:hover {
+    transform: scale(1.05);
+}
+
+.salon img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.book-btn {
+    background: #6a0dad;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.book-btn:hover {
+    background: #ffcc00;
+    color: #6a0dad;
+}
+
+/* Services */
+.services {
+    text-align: center;
+    padding: 50px 20px;
+    background: #6a0dad;
+    color: white;
+}
+
+.service-list {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.service {
+    background: #ffcc00;
+    color: #6a0dad;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.service:hover {
+    background: white;
+    color: #6a0dad;
+}
+
+/* Booking Form */
+.booking {
+    text-align: center;
+    padding: 50px 20px;
+    background-image: url(back\ \(1\).jpg);
+}
+
+.booking form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking form input,
+.booking form select {
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    outline: none;
+}
+
+.booking form button {
+    background: #6a0dad;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.booking form button:hover {
+    background: #ffcc00;
+    color: #6a0dad;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #1f1f1f;
+    color: white;
+    padding: 20px;
+    font-size: 14px;
+}
+
+
+    </style>
+    <script>
+        // Fetch salons from the backend
+async function fetchSalons() {
+    try {
+        const response = await fetch('http://localhost:5000/salons');
+        const salons = await response.json();
+
+        let salonContainer = document.querySelector('.salons');
+        salonContainer.innerHTML = ''; // Clear previous content
+
+        salons.forEach(salon => {
+            let salonDiv = document.createElement('div');
+            salonDiv.classList.add('salon');
+            salonDiv.innerHTML = `
+                <h3>${salon.name}</h3>
+                <p>📍 ${salon.address}</p>
+                <p>Services: ${salon.services.join(", ")}</p>
+                <button class="book-btn" onclick="bookSalon('${salon.name}')">Book Now</button>
+            `;
+            salonContainer.appendChild(salonDiv);
+        });
+    } catch (error) {
+        console.error("Error fetching salons:", error);
+    }
+}
+
+// Function to book an appointment using prompts
+async function bookSalon(salonName) {
+    const name = prompt("Enter your full name:");
+    const service = prompt("Enter service (e.g., Haircut, Styling):");
+    const date = prompt("Enter date (YYYY-MM-DD):");
+
+    if (!name || !service || !date) {
+        alert("All fields are required!");
+        return;
+    }
+
+    const bookingData = { name, salon: salonName, service, date };
+
+    try {
+        const response = await fetch('http://localhost:5000/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+    } catch (error) {
+        console.error("Error booking appointment:", error);
+    }
+}
+
+// Handle form-based booking
+document.querySelector("form").addEventListener("submit", async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const salon = document.getElementById("salon").value;
+    const service = document.getElementById("service").value;
+    const date = document.getElementById("date").value;
+
+    if (!name || !salon || !service || !date) {
+        alert("All fields are required!");
+        return;
+    }
+
+    const bookingData = { name, salon, service, date };
+
+    try {
+        const response = await fetch('http://localhost:5000/book', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+    } catch (error) {
+        console.error("Error submitting booking:", error);
+    }
+});
+
+// Call fetchSalons when the page loads
+document.addEventListener('DOMContentLoaded', fetchSalons);
+
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">SalonBook</div>
+        <nav>
+            <ul>
+                <li><a href="saloons.html">Salons</a></li>
+                <li><a href="booking.html">Bookings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+   <!-- <section class="hero">
+        <h1>Book Your Perfect Salon Experience</h1>
+        <p>Find and book appointments at top-rated salons near you</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search by location or salon name">
+            <button>Search</button>
+        </div>
+    </section>-->
+
+    <!-- Salon Listings -->
+    <section class="salon-list">
+        <h2>Popular Salons</h2>
+        <div class="salons">
+            <div class="salon">
+                <h3>Glamour Cuts</h3>
+                <img src="los angeles.jpg" alt="Style Hub">
+                <p>📍 123 Main Street, Nuzvid, nuz</p>
+                <p>Services: Haircuts, Styling, Coloring</p>
+                <a href="booking.html">
+                <button class="book-btn">Book Now</button>
+            </a>
+            </div>
+
+            <div class="salon">
+                <h3>Style Hub</h3>
+                <img src="newyork.jpg" alt="Style Hub">
+                <p>📍 456 Ocean Avenue, Mylavaram, ML</p>
+                <p>Services: Men's Grooming, Styling</p>
+                <a href="booking.html">
+                <button class="book-btn">Book Now</button>
+            </a>
+
+                
+            </div>
+
+            <div class="salon">
+                <img src="chica.jpg" alt="Style Hub">
+                <h3>Royal Touch Salon</h3>
+                <p>📍 789 Maple Drive,Eluru , IL</p>
+                <p>Services: Treatments, Coloring</p>
+                <a href="booking.html">
+                    <button class="book-btn">Book Now</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <h2>Our Services</h2>
+        <div class="service-list">
+            <a href="haircuts2.html">
+                <button class="book-btn">✂️ Haircuts</button>
+            </a>
+            <a href="styling.html">
+                <button class="book-btn">💇 Styling</button>
+            </a>
+            <a href="coloring.html">
+                <button class="book-btn">🎨 Coloring</button>
+            </a>
+            
+            <a href="treatments.html">
+                <button class="book-btn">✨ Treatments</button>
+            </a>
+          
+            
+            
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking">
+        <h2>Book an Appointment</h2>
+        <form>
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="salon">Choose Salon:</label>
+            <select id="salon">
+                <option>Glamour Cuts - NY</option>
+                <option>Style Hub - LA</option>
+                <option>Royal Touch - Chicago</option>
+            </select>
+
+            <label for="service">Service:</label>
+            <select id="service">
+                <option>Haircut</option>
+                <option>Styling</option>
+                <option>Coloring</option>
+                <option>Treatment</option>
+            </select>
+
+            <label for="date">Choose Date:</label>
+            <input type="date" id="date" required>
+
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SalonBook. All rights reserved.</p>
+    </footer>
+</body>
+</html>

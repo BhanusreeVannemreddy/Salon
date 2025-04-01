@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salon Booking System</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking CSS -->
+    <style>
+        /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f9f9f9;
+    background-image: url("back\ \(1\).jpg");
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #4f46e5;
+    padding: 15px 30px;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: #4f46e5;
+    color: white;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: none;
+    width: 250px;
+    border-radius: 5px;
+}
+
+.search-bar button {
+    padding: 10px 15px;
+    border: none;
+    background: white;
+    color: #4f46e5;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 5px;
+    border-radius: 5px;
+}
+
+/* Salon Listings */
+.salon-list {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.salons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.salon {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.salon img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book-btn {
+    background: #4f46e5;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    background: #1f2937;
+    color: white;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">SalonBook</div>
+        <nav>
+            <ul>
+                <li><a href="fend.html">Home</a></li>
+                <li><a href="booking.html">Bookings</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Book Your Perfect Salon Experience</h1>
+        <p>Find and book appointments at top-rated salons near you</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Search by location or salon name">
+            <button>Search</button>
+        </div>
+    </section>
+
+    <!-- Salon Listings -->
+    <section class="salon-list">
+        <h2>Popular Salons</h2>
+        <div class="salons">
+            <div class="salon">
+                <img src="newyork.jpg" alt="Glamour Cuts">
+                <h3>Glamour Cuts</h3>
+                <p>📍 123 Main Street, New York, NY</p>
+                <p>Services: Haircuts, Styling, Coloring</p>
+                <button class="book-btn" onclick="window.location.href='booking.html'">Book Now</button>
+            </div>
+
+            <div class="salon">
+                <img src="newyork.jpg" alt="Style Hub">
+                <h3>Style Hub</h3>
+                <p>📍 456 Ocean Avenue, Los Angeles, CA</p>
+                <p>Services: Men's Grooming, Styling</p>
+                <button class="book-btn" onclick="window.location.href='booking.html'">Book Now</button>
+            </div>
+
+            <div class="salon">
+                <img src="chica.jpg" alt="Royal Touch">
+                <h3>Royal Touch Salon</h3>
+                <p>📍 789 Maple Drive, Chicago, IL</p>
+                <p>Services: Treatments, Coloring</p>
+                <button class="book-btn" onclick="window.location.href='booking.html'">Book Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 SalonBook. All rights reserved.</p>
+    </footer>
+</body>
+</html>
